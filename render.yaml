@@ -1,3 +1,5 @@
+# render.yaml
+# Place this file in the root of your 'ntcc-project' repository.
 
 services:
   # FastAPI Backend Service
@@ -21,7 +23,7 @@ services:
       - key: INSTAMOJO_AUTH_TOKEN
         value: # Paste your Instamojo Auth Token here in Render Dashboard
       - key: PYTHON_VERSION
-        value: python-3.10.13
+        value: 3.10.13 # Corrected: Removed "python-" prefix
 
   # Streamlit Frontend Service
   - type: web
@@ -46,4 +48,4 @@ services:
       - key: INSTAMOJO_AUTH_TOKEN
         value: # Paste your Instamojo Auth Token here in Render Dashboard
       - key: PYTHON_VERSION
-        value: python-3.10.13
+        value: 3.10.13 # Corrected: Removed "python-" prefix
