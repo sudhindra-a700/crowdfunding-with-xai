@@ -1,0 +1,3 @@
+google cloud project id- ntcc-project-466015
+algolia application id- BYX9BCR5OC
+algolia admin key- ad57fdfa59501d7e089a5bf5124ceb1f

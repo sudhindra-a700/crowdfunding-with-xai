@@ -1,0 +1,30 @@
+# frontend/Dockerfile.frontend
+
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim-bullseye
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install system dependencies for Streamlit (if any specific ones are needed)
+RUN apt-get update && apt-get install -y \
+    # Add any specific system dependencies if your Streamlit app requires them
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the requirements file first to leverage Docker cache
+COPY requirements.txt .
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of your application code into the container.
+# This includes haven_frontend.py
+COPY . .
+
+# Expose the port Streamlit will run on
+EXPOSE 8501
+
+# Command to run the Streamlit application.
+# It listens on all network interfaces (0.0.0.0) on port 8501.
+# --server.enableCORS false and --server.enableXsrfProtection false are often needed for Cloud Run deployments
+CMD ["streamlit", "run", "haven_frontend.py", "--server.port", "8501", "--server.address", "0.0.0.0", "--server.enableCORS", "false", "--server.enableXsrfProtection", "false"]
