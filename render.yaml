@@ -1,12 +1,10 @@
-# render.yaml
-# Place this file in the root of your 'ntcc-project' repository.
 
 services:
   # FastAPI Backend Service
   - type: web
     name: haven-fastapi-backend
     env: python
-    rootDir: crowdfunding-with-xai/backend # <-- CORRECTED THIS LINE!
+    rootDir: backend # <-- SIMPLIFIED THIS LINE!
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
     envVars:
@@ -29,7 +27,7 @@ services:
   - type: web
     name: haven-streamlit-frontend
     env: python
-    rootDir: crowdfunding-with-xai/frontend # This path was already correct for the frontend
+    rootDir: frontend # <-- SIMPLIFIED THIS LINE!
     buildCommand: pip install -r requirements.txt
     startCommand: streamlit run front_main.py --server.port $PORT --server.address 0.0.0.0 --server.enableCORS false --server.enableXsrfProtection false
     envVars:
