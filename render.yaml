@@ -7,17 +7,11 @@ services:
     name: haven-fastapi-backend
     env: python
     rootDir: backend # Points to the 'backend' directory in your repo
-    # Enhanced diagnostic commands to verify requirements.txt existence and content
+    # Corrected diagnostic commands: Removed redundant 'cd backend'
     buildCommand: |
-      echo "--- Initial PWD ---"
+      echo "--- Current PWD (should be /opt/render/project/src/backend) ---"
       pwd
-      echo "--- Initial LS -L ---"
-      ls -l
-      echo "--- Changing to rootDir: backend ---"
-      cd backend
-      echo "--- PWD after cd backend ---"
-      pwd
-      echo "--- LS -L after cd backend ---"
+      echo "--- LS -L in rootDir ---"
       ls -l
       echo "--- Attempting to cat requirements.txt ---"
       cat requirements.txt
@@ -45,17 +39,11 @@ services:
     name: haven-streamlit-frontend
     env: python
     rootDir: frontend # <-- SIMPLIFIED THIS LINE!
-    # Enhanced diagnostic commands to verify requirements.txt existence and content
+    # Corrected diagnostic commands: Removed redundant 'cd frontend'
     buildCommand: |
-      echo "--- Initial PWD ---"
+      echo "--- Current PWD (should be /opt/render/project/src/frontend) ---"
       pwd
-      echo "--- Initial LS -L ---"
-      ls -l
-      echo "--- Changing to rootDir: frontend ---"
-      cd frontend
-      echo "--- PWD after cd frontend ---"
-      pwd
-      echo "--- LS -L after cd frontend ---"
+      echo "--- LS -L in rootDir ---"
       ls -l
       echo "--- Attempting to cat requirements.txt ---"
       cat requirements.txt
