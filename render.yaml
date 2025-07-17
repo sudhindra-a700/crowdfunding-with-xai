@@ -7,7 +7,11 @@ services:
     name: haven-fastapi-backend
     env: python
     rootDir: backend # <-- SIMPLIFIED THIS LINE!
-    buildCommand: pip install -r requirements.txt
+    # Added diagnostic commands to verify requirements.txt existence and content
+    buildCommand: |
+      ls -l
+      cat requirements.txt
+      pip install -r requirements.txt
     startCommand: gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
     envVars:
       - key: FIREBASE_SERVICE_ACCOUNT_KEY_JSON_BASE64
@@ -30,7 +34,11 @@ services:
     name: haven-streamlit-frontend
     env: python
     rootDir: frontend # <-- SIMPLIFIED THIS LINE!
-    buildCommand: pip install -r requirements.txt
+    # Added diagnostic commands to verify requirements.txt existence and content
+    buildCommand: |
+      ls -l
+      cat requirements.txt
+      pip install -r requirements.txt
     startCommand: streamlit run front_main.py --server.port $PORT --server.address 0.0.0.0 --server.enableCORS false --server.enableXsrfProtection false
     envVars:
       - key: FASTAPI_BACKEND_URL
